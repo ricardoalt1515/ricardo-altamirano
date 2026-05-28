@@ -18,9 +18,13 @@ import { site, nav } from "../data/content";
       <button
         type="button"
         class="nav__cmdk focus-ring"
-        aria-label="Open command palette"
+        aria-label="Open menu and command palette"
         onclick="window.__openCmdk && window.__openCmdk()"
       >
+        <svg class="nav__cmdk-icon" width="15" height="15" viewBox="0 0 15 15" aria-hidden="true" fill="none">
+          <path d="M1.5 4h12M1.5 7.5h12M1.5 11h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <span class="nav__cmdk-menu">Menu</span>
         <span class="nav__cmdk-key">⌘K</span>
       </button>
       <a href="#contact" class="nav__cta focus-ring">Contact ↗</a>
@@ -114,6 +118,20 @@ import { site, nav } from "../data/content";
   }
   .nav__cmdk:hover .nav__cmdk-key { color: var(--accent); }
 
+  /* Desktop: keyboard hint only. Hamburger + label are mobile-only. */
+  .nav__cmdk-icon { color: var(--ink-dim); display: none; }
+  .nav__cmdk-menu {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .nav__cmdk:hover .nav__cmdk-icon,
+  .nav__cmdk:hover .nav__cmdk-menu { color: var(--accent); }
+
   .nav__cta {
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -127,6 +145,10 @@ import { site, nav } from "../data/content";
   @media (max-width: 760px) {
     .nav__links { display: none; }
     .nav__cta { display: inline-block; }
+    /* No keyboard on a phone — show a real menu affordance instead of ⌘K. */
+    .nav__cmdk-key { display: none; }
+    .nav__cmdk-icon { display: block; }
+    .nav__cmdk-menu { display: inline; }
   }
 </style>
 

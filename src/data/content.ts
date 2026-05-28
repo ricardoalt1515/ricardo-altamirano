@@ -192,14 +192,6 @@ export const openSource: OpenSourceItem[] = [
     status: "In development",
     tags: ["Next.js", "AI SDK", "ToolLoopAgent", "Amazon Bedrock", "Amplify"],
   },
-  {
-    name: "gentle-pi",
-    href: "https://github.com/ricardoalt1515/gentle-pi",
-    blurb:
-      "Harness engineering in practice. I run gentle-pi from the Gentle-AI ecosystem by Gentleman Programming — a harness for the Pi coding agent: Spec-Driven Development, subagent orchestration, strict TDD evidence, and reviewer-aware work units. The discipline I bring to the agents I build.",
-    status: "Practitioner",
-    tags: ["Harness Engineering", "SDD", "Agentic Coding", "Subagents"],
-  },
 ];
 
 export const experience = [
@@ -247,7 +239,6 @@ export const stack: { group: string; items: string[] }[] = [
     group: "AI Systems",
     items: [
       "Agent Harnesses",
-      "Harness Engineering",
       "Context Engineering",
       "Claude Skills",
       "Tool Calling",
