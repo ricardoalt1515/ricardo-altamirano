@@ -1,5 +1,5 @@
 ---
-import { about } from "../data/content";
+import { about, method } from "../data/content";
 ---
 
 <section class="section about" id="about">
@@ -25,6 +25,23 @@ import { about } from "../data/content";
           ))}
         </ul>
       </div>
+    </div>
+
+    <div class="method">
+      <p class="marker method__marker" data-reveal>
+        <span>{method.label}</span>
+      </p>
+      <ul class="method__list">
+        {method.principles.map((p, i) => (
+          <li class="method__item" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+            <span class="method__num">{String(i + 1).padStart(2, "0")}</span>
+            <span class="method__body">
+              <span class="method__title">{p.title}</span>
+              <span class="method__detail">{p.detail}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </section>
@@ -74,5 +91,58 @@ import { about } from "../data/content";
     top: clamp(1.25rem, 3vw, 1.75rem);
     color: var(--accent);
     font-family: var(--font-mono);
+  }
+
+  /* ---- How I build reliable AI systems ---- */
+  .method {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    border-top: 1px solid var(--line-strong);
+  }
+  .method__marker { margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+  .method__marker::before { background: var(--accent); }
+
+  .method__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 720px) {
+    .method__list { grid-template-columns: 1fr 1fr; column-gap: clamp(2rem, 5vw, 4rem); }
+  }
+
+  .method__item {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: clamp(1.1rem, 2.5vw, 1.5rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .method__num {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--accent);
+    flex: none;
+    letter-spacing: 0.05em;
+  }
+  .method__body { display: block; }
+  .method__title {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .method__detail {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    max-width: 42ch;
   }
 </style>

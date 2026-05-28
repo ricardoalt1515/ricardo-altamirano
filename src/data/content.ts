@@ -60,8 +60,8 @@ export const marquee = [
 
 export const about = {
   intro: [
-    "I'm an AI Engineer — and in practice, a forward-deployed one. I embed in a domain and build production AI until the system actually works: agent harnesses, context engineering, eval pipelines, guardrails, retrieval, and multimodal analysis. Built for environments where being wrong has consequences.",
-    "Currently at Hydrous Group, building vertical AI platforms that pair governed agents with deterministic operating cores — sandboxed tool execution, observability, and evals in the loop. I work with Spec-Driven Development and agentic coding discipline.",
+    "I'm an AI Engineer — and in practice, a forward-deployed one. I embed in a domain and stay until the system actually works in production, not just in a demo. Most of my work lives where being wrong has consequences, so I optimize for systems that fail safely and stay debuggable.",
+    "Currently at Hydrous Group, building vertical AI platforms that pair governed agents with deterministic operating cores. I work with Spec-Driven Development and agentic coding discipline.",
   ],
   // Short conviction statements — the "what I believe" block.
   // The first belief is the personal thesis, lifted from my own product writing.
@@ -69,6 +69,38 @@ export const about = {
     "Don't build the agent. Build the operating system the agent must use.",
     "An agent is a model plus a harness. The model is the easy part — I build the harness: context, tools, evals, guardrails.",
     "Agents need guardrails, not vibes — least-privilege tools, governed workflows, and humans who approve canonical truth.",
+  ],
+} as const;
+
+// "How I build reliable AI systems" — turns the beliefs into concrete method.
+// These are practices I actually apply, not aspirations.
+export const method = {
+  label: "How I build reliable AI systems",
+  principles: [
+    {
+      title: "Structured outputs over free text",
+      detail: "Models return typed, validated objects — not prose I have to parse and hope about.",
+    },
+    {
+      title: "Deterministic logic outside the model",
+      detail: "Business rules live in code the agent calls, not buried in a prompt.",
+    },
+    {
+      title: "Evals before deploy",
+      detail: "Changes ship behind eval suites in CI — measured, not vibes.",
+    },
+    {
+      title: "Least-privilege tool execution",
+      detail: "Agents get the narrowest tool surface that does the job, sandboxed.",
+    },
+    {
+      title: "Humans approve canonical truth",
+      detail: "People own what becomes ground truth; agents retrieve, draft, and propose.",
+    },
+    {
+      title: "Observability in the loop",
+      detail: "Cost, latency, and failures traced per run, so regressions surface fast.",
+    },
   ],
 } as const;
 
@@ -192,6 +224,21 @@ export const experience = [
 export const education = {
   school: "Universidad Autónoma de Occidente",
   degree: "B.S. in Software Engineering",
+} as const;
+
+// Human-readable summary shown before the full stack.json manifest.
+// AI systems lead; full-stack and cloud are framed as how I ship them.
+export const coreStrengths = {
+  label: "Core strengths",
+  items: [
+    "Production AI Agents",
+    "Agent Harnesses & Tool Execution",
+    "RAG & Context Engineering",
+    "Evals, Guardrails & Observability",
+    "Full-Stack Product Engineering",
+    "Cloud & Infrastructure",
+  ],
+  note: "The AI systems are the headline. Full-stack and cloud are how I ship them end-to-end.",
 } as const;
 
 export const stack: { group: string; items: string[] }[] = [

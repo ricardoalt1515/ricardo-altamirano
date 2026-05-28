@@ -1,5 +1,5 @@
 ---
-import { stack } from "../data/content";
+import { stack, coreStrengths } from "../data/content";
 
 // Group label -> JSON key (snake_case)
 const toKey = (label: string) =>
@@ -16,6 +16,16 @@ const manifestJson = JSON.stringify(manifest, null, 2);
       <span class="marker__num">05</span><span>Stack</span>
     </p>
     <h2 class="section-title stack__title" data-reveal>The<br />manifest</h2>
+
+    <div class="strengths" data-reveal>
+      <p class="strengths__label">{coreStrengths.label}</p>
+      <ul class="strengths__list">
+        {coreStrengths.items.map((item) => (
+          <li class="chip strengths__chip">{item}</li>
+        ))}
+      </ul>
+      <p class="strengths__note">{coreStrengths.note}</p>
+    </div>
 
     <div class="manifest" data-reveal>
       <div class="manifest__bar">
@@ -55,6 +65,40 @@ const manifestJson = JSON.stringify(manifest, null, 2);
 
 <style>
   .stack__title { margin-bottom: clamp(2.5rem, 6vw, 3.5rem); }
+
+  /* ---- Core strengths (human-readable lead-in) ---- */
+  .strengths { margin-bottom: clamp(2.5rem, 6vw, 3.5rem); max-width: 880px; }
+  .strengths__label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 1.1rem;
+  }
+  .strengths__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .strengths__chip {
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
+  }
+  .strengths__chip:first-child {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .strengths__note {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    max-width: 52ch;
+  }
 
   .manifest {
     border: 1px solid var(--line-strong);
