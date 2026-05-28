@@ -8,13 +8,13 @@ export const site = {
   initials: "RA.",
   role: "AI Engineer",
   // Shown under the name in the nav / meta
-  subtitle: "Production AI Agents · Vertical Systems · Cloud Infrastructure",
+  subtitle: "Forward-Deployed · Production Agents · Vertical AI Systems",
   location: "Los Mochis, Sinaloa, Mexico",
   currentCompany: "Hydrous Group",
   // Used for <title>, meta description and Open Graph
   seoTitle: "Ricardo Altamirano — AI Engineer",
   seoDescription:
-    "AI Engineer building production AI agents and the deterministic operating systems they need to run inside real, regulated domain workflows.",
+    "AI Engineer & Forward-Deployed Engineer building production agents and the harnesses they run on — context engineering, evals, guardrails, and vertical AI inside real regulated workflows.",
   // Set this to your deployed URL when you have a domain (used for OG / canonical)
   url: "https://ricardo-altamirano.vercel.app",
 } as const;
@@ -26,13 +26,13 @@ export const hero = {
   headline: "I build AI systems that ship to production.",
   accent: "AI systems",
   lede:
-    "Production agents, governed workflows, and the deterministic operating cores they need to run on — shipped with Spec-Driven Development discipline.",
+    "Production agents and the harnesses they run on — context engineering, evals, guardrails, and the deterministic operating cores agents need. Shipped with Spec-Driven Development discipline.",
   // Status line — modeled after Julián's "currently working on" pattern + LinkedIn open-to-work.
   status: {
-    label: "Open to AI Engineering roles",
+    label: "Open to AI Engineer & Forward-Deployed roles",
     currently: "Building vertical AI at Hydrous Group",
   },
-  tags: ["Vertical AI", "Agent Harnesses", "RAG", "Tool Calling", "Multimodal", "MCP"],
+  tags: ["Harness Engineering", "Context Engineering", "Vertical AI", "Agentic RAG", "Evals", "MCP"],
   ctas: [
     { label: "View Work", href: "#work", primary: true },
     { label: "Get in Touch", href: "#contact", primary: false },
@@ -44,31 +44,31 @@ export const hero = {
 // Scrolling keyword strip under the hero.
 // Mix of themes (positioning) + tools (ATS keywords).
 export const marquee = [
+  "Harness Engineering",
+  "Context Engineering",
   "Vertical AI",
   "Production Agents",
+  "Eval-Driven Development",
   "Spec-Driven Development",
-  "Agentic Coding",
-  "Agent Harnesses",
-  "RAG",
+  "Agentic RAG",
+  "Subagent Orchestration",
   "Tool Calling",
-  "Multimodal",
+  "Guardrails",
   "MCP",
-  "Governed Workflows",
-  "Structured Outputs",
-  "Cloud-Native AI",
+  "A2A Protocol",
 ] as const;
 
 export const about = {
   intro: [
-    "I'm an AI Engineer building production AI for real domain workflows — agent harnesses, tool-calling pipelines, retrieval-augmented generation, structured outputs, multimodal analysis, and cloud-deployed applications. Built for environments where being wrong has consequences.",
-    "Currently AI Engineer at Hydrous Group, building vertical AI platforms that pair governed agents with deterministic operating cores. I work with Spec-Driven Development and agentic coding discipline.",
+    "I'm an AI Engineer — and in practice, a forward-deployed one. I embed in a domain and build production AI until the system actually works: agent harnesses, context engineering, eval pipelines, guardrails, retrieval, and multimodal analysis. Built for environments where being wrong has consequences.",
+    "Currently at Hydrous Group, building vertical AI platforms that pair governed agents with deterministic operating cores — sandboxed tool execution, observability, and evals in the loop. I work with Spec-Driven Development and agentic coding discipline.",
   ],
   // Short conviction statements — the "what I believe" block.
   // The first belief is the personal thesis, lifted from my own product writing.
   beliefs: [
     "Don't build the agent. Build the operating system the agent must use.",
-    "Most AI in production is a demo with a deploy button. I build the harness around it.",
-    "Agents need guardrails, not vibes — governed workflows, deterministic calculations, structured outputs.",
+    "An agent is a model plus a harness. The model is the easy part — I build the harness: context, tools, evals, guardrails.",
+    "Agents need guardrails, not vibes — least-privilege tools, governed workflows, and humans who approve canonical truth.",
   ],
 } as const;
 
@@ -89,8 +89,8 @@ export const projects: Project[] = [
     index: "01",
     title: "Vertical AI platform for regulated operations",
     blurb:
-      "Field teams ran regulated workflows out of spreadsheets and email threads. I built a production AI platform where agents operate on top of a deterministic vertical core: humans approve canonical truth; agents handle retrieval, tool execution, and structured drafts inside real business processes.",
-    tags: ["Vertical AI", "Production Agents", "RAG", "Tool Calling", "FastAPI", "Python"],
+      "Field teams ran regulated workflows out of spreadsheets and email threads. I built a production AI platform where agents operate on top of a deterministic vertical core: humans approve canonical truth; agents handle retrieval, tool execution, and structured drafts inside real business processes. Guardrailed with least-privilege tools, sandboxed execution, and evals in the loop.",
+    tags: ["Vertical AI", "Production Agents", "Subagent Orchestration", "Guardrails", "Evals", "FastAPI"],
     status: "Hydrous Group · In production",
   },
   {
@@ -156,9 +156,9 @@ export const openSource: OpenSourceItem[] = [
     name: "gentle-pi",
     href: "https://github.com/ricardoalt1515/gentle-pi",
     blurb:
-      "Practitioner of gentle-pi from the Gentle-AI ecosystem by Gentleman Programming — a development harness for the Pi coding agent: Spec-Driven Development, subagent orchestration, strict TDD evidence, and reviewer-aware work units.",
+      "Harness engineering in practice. I run gentle-pi from the Gentle-AI ecosystem by Gentleman Programming — a harness for the Pi coding agent: Spec-Driven Development, subagent orchestration, strict TDD evidence, and reviewer-aware work units. The discipline I bring to the agents I build.",
     status: "Practitioner",
-    tags: ["SDD", "Agentic Coding", "TDD Harness", "Subagents"],
+    tags: ["Harness Engineering", "SDD", "Agentic Coding", "Subagents"],
   },
 ];
 
@@ -191,19 +191,23 @@ export const stack: { group: string; items: string[] }[] = [
   {
     group: "AI Systems",
     items: [
-      "AI Agents",
       "Agent Harnesses",
+      "Harness Engineering",
+      "Context Engineering",
       "Tool Calling",
       "RAG",
+      "Agentic RAG",
       "Structured Outputs",
       "Multimodal",
-      "Multi-Agent",
+      "Subagent Orchestration",
+      "Guardrails (OWASP LLM)",
       "LangChain",
       "LangGraph",
       "AI SDK ToolLoopAgent",
       "Amazon Bedrock",
-      "Vector DBs",
       "MCP",
+      "A2A Protocol",
+      "Vector DBs",
     ],
   },
   { group: "Web & APIs", items: ["FastAPI", "Next.js", "React", "REST APIs", "WebSockets"] },
@@ -225,15 +229,32 @@ export const stack: { group: string; items: string[] }[] = [
     ],
   },
   {
+    group: "Agent Infra & Evals",
+    items: [
+      "E2B / Firecracker Sandboxes",
+      "Least-Privilege Tools",
+      "LangSmith",
+      "Phoenix / Arize",
+      "Eval Pipelines (CI-gated)",
+      "Cost & Latency Observability",
+    ],
+  },
+  {
     group: "Practice",
-    items: ["Spec-Driven Development", "Agentic Coding", "TDD", "Code Review Discipline"],
+    items: [
+      "Spec-Driven Development",
+      "Eval-Driven Development",
+      "Agentic Coding",
+      "TDD",
+      "Code Review Discipline",
+    ],
   },
 ];
 
 export const contact = {
   headline: "Let's build something.",
   lede:
-    "I'm interested in AI engineering roles — production agents, vertical AI systems, harnesses, and the cloud infrastructure to run them. If that's your problem, I'd like to hear about it.",
+    "I'm interested in AI Engineer and Forward-Deployed roles — production agents, harnesses, evals, and vertical AI inside real regulated domains. If that's your problem, I'd like to hear about it.",
   email: "ricardoaltamirano1515@gmail.com",
   links: [
     { label: "Email", href: "mailto:ricardoaltamirano1515@gmail.com" },
