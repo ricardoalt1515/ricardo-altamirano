@@ -95,6 +95,14 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    title: "Company-wide knowledge layer with Claude Skills",
+    blurb:
+      "Domain expertise was trapped in people's heads, Slack threads, and docs that went stale. I built an internal knowledge layer that packages each team's expertise as model-invoked Claude Skills — Claude applies the right guidance automatically from task context, so engineers don't have to know what exists or go ask. Distributed through an internal marketplace with per-team governance, backed by subagents for review and validation, lifecycle hooks, MCP servers, and OpenTelemetry usage analytics to keep the skills sharp.",
+    tags: ["Claude Skills", "Knowledge Layer", "Subagents", "MCP", "Hooks", "Observability"],
+    status: "Hydrous Group · Internal platform",
+  },
+  {
+    index: "03",
     title: "Multimodal diagnostics & proposal generation",
     blurb:
       "Field evidence — documents, images, charts, engineering assets — arrived in inconsistent formats. I built multimodal AI that grounds analysis in domain knowledge, then generates client-ready technical proposals with dynamic tables, charts, and process-flow diagrams.",
@@ -102,7 +110,7 @@ export const projects: Project[] = [
     status: "Hydrous Group",
   },
   {
-    index: "03",
+    index: "04",
     title: "Enterprise knowledge & proposal platform",
     blurb:
       "Proposal turnaround was bottlenecked on tribal knowledge spread across documents, CRM, and prior projects. I built a knowledge platform that integrates retrieval with CRM and proposal workflows in real time, plus a natural-language-to-SQL surface so non-technical teams could query data directly.",
@@ -111,7 +119,7 @@ export const projects: Project[] = [
     status: "DVAWEB",
   },
   {
-    index: "04",
+    index: "05",
     title: "Intelligent parking platform",
     blurb:
       "End-to-end product build — architecture, backend services, frontend, and production rollout. Plus internal AI tooling for CRM knowledge retrieval across the company.",
@@ -145,10 +153,10 @@ export const openSource: OpenSourceItem[] = [
     tags: ["Python", "Vertical AI", "Agent Operating Core", "Workflow State"],
   },
   {
-    name: "SecondstreamAI",
-    href: "https://github.com/ricardoalt1515/SecondstreamAI",
+    name: "Chamai",
+    href: "https://github.com/ricardoalt1515/chamai",
     blurb:
-      "White-label AI agent workspace for vertical workflows. A reusable product shell — auth, threads, attachments, streaming, artifact generation — with a per-vertical agent router on top of an AI SDK ToolLoopAgent runtime and Amazon Bedrock.",
+      "White-label AI agent workspace for vertical workflows. A reusable product shell — auth, threads, attachments, streaming, artifact generation — where each vertical owns its prompt, skills, tools, and artifact schemas, resolved at request time by a per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock.",
     status: "In development",
     tags: ["Next.js", "AI SDK", "ToolLoopAgent", "Amazon Bedrock", "Amplify"],
   },
@@ -169,7 +177,7 @@ export const experience = [
     period: "Jan 2025 — Present",
     site: "hydrousmgmt.com",
     summary:
-      "Building vertical AI platforms and governed agent workflows for regulated industrial operations: RAG, multimodal diagnostics, and production-grade proposal generation.",
+      "Building vertical AI platforms and governed agent workflows for regulated industrial operations: RAG, multimodal diagnostics, and production-grade proposal generation. Built a company-wide knowledge layer with model-invoked Claude Skills, plus subagents, hooks, MCP, and usage analytics.",
   },
   {
     company: "DVAWEB",
@@ -194,6 +202,7 @@ export const stack: { group: string; items: string[] }[] = [
       "Agent Harnesses",
       "Harness Engineering",
       "Context Engineering",
+      "Claude Skills",
       "Tool Calling",
       "RAG",
       "Agentic RAG",
