@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { site } from "../data/content";
+import { site, contact, stack, experience } from "../data/content";
 
 interface Props {
   title?: string;
@@ -14,6 +14,29 @@ const {
 
 const canonical = new URL(Astro.url.pathname, site.url).toString();
 const ogImage = new URL("/og.png", site.url).toString();
+
+// Schema.org Person — helps search engines & recruiter tools resolve "Ricardo Altamirano".
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.url,
+  image: ogImage,
+  jobTitle: site.role,
+  description: site.seoDescription,
+  email: `mailto:${contact.email}`,
+  worksFor: { "@type": "Organization", name: experience[0].company },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Los Mochis",
+    addressRegion: "Sinaloa",
+    addressCountry: "MX",
+  },
+  knowsAbout: stack.flatMap((g) => g.items),
+  sameAs: contact.links
+    .filter((l) => l.href.startsWith("http"))
+    .map((l) => l.href),
+};
 ---
 
 <!doctype html>
@@ -48,6 +71,9 @@ const ogImage = new URL("/og.png", site.url).toString();
     <meta name="twitter:image" content={ogImage} />
 
     <meta name="theme-color" content="#0a0b0d" />
+
+    <!-- Structured data: Person -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
 
     <!-- Fonts: Archivo (display) · IBM Plex Sans (body) · IBM Plex Mono (labels) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

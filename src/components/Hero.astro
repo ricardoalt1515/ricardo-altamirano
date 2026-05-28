@@ -1,5 +1,6 @@
 ---
 import { hero, site } from "../data/content";
+import AgentTrace from "./AgentTrace.astro";
 
 // Split the headline so the accent phrase can be highlighted.
 const [before, after] = hero.headline.split(hero.accent);
@@ -7,6 +8,7 @@ const nameParts = site.name.split(" ");
 ---
 
 <section class="hero" id="top">
+  <AgentTrace />
   <div class="container hero__inner">
     <p class="eyebrow hero__eyebrow load" style="--i:0">
       <span>{hero.eyebrowLeft}</span>
@@ -68,7 +70,7 @@ const nameParts = site.name.split(" ");
     position: relative;
     padding-block: 7rem 5rem;
   }
-  .hero__inner { width: 100%; }
+  .hero__inner { width: 100%; position: relative; z-index: 1; }
 
   .hero__eyebrow {
     display: flex;

@@ -1,0 +1,90 @@
+---
+// Subtle, atmospheric "agent log" rendered behind the hero content.
+// Content references real artifacts (Second-Stream, the thesis, the stack)
+// so it reads as authentic rather than decorative filler.
+const lines = [
+  "$ agent --session ra.2026",
+  "[init]  loading skills: [rag, agents, mcp, multimodal]",
+  "[tool]  read_repo(name=\"Second-Stream\")",
+  "        └─ 247 files · python · active mvp",
+  "[tool]  extract_thesis()",
+  "        └─ \"build the OS the agent must use\"",
+  "[tool]  query_stack(group=\"ai_systems\")",
+  "        └─ 13 capabilities resolved",
+  "[plan]  governed_workflow → deterministic_core",
+  "[tool]  run_evals(suite=\"production\")",
+  "        └─ structured_outputs: pass",
+  "[tool]  generate_artifact(type=\"proposal\")",
+  "        └─ tables + charts + flow_diagrams",
+  "[state] agent.status = ready",
+  "[ok]    shipped to production ✓",
+];
+// Duplicated for a seamless vertical loop.
+const track = [...lines, ...lines];
+---
+
+<div class="trace" aria-hidden="true">
+  <div class="trace__track">
+    {track.map((l) => (
+      <span class="trace__line">{l}</span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .trace {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(42%, 460px);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    /* fade at top + bottom + toward the headline on the left */
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent),
+      linear-gradient(to left, #000 55%, transparent);
+    mask-image:
+      linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent),
+      linear-gradient(to left, #000 55%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  .trace__track {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding-top: 1rem;
+    animation: traceScroll 32s linear infinite;
+  }
+
+  .trace__line {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    white-space: pre;
+    color: var(--ink-faint);
+    opacity: 0.5;
+  }
+  /* tint the status/ok markers with the accent so the eye catches the rhythm */
+  .trace__line:nth-child(15n + 1),
+  .trace__line:nth-child(15n + 15) {
+    color: var(--accent);
+    opacity: 0.45;
+  }
+
+  @keyframes traceScroll {
+    to { transform: translateY(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trace__track { animation: none; }
+  }
+  /* Hide on smaller screens where it would collide with the content */
+  @media (max-width: 1024px) {
+    .trace { display: none; }
+  }
+</style>
