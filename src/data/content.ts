@@ -36,8 +36,8 @@ export const hero = {
   ctas: [
     { label: "View Work", href: "#work", primary: true },
     { label: "Get in Touch", href: "#contact", primary: false },
-    // Drop your PDF at public/Ricardo-Altamirano-CV.pdf to enable this.
-    { label: "Download CV", href: "/Ricardo-Altamirano-CV.pdf", primary: false, external: true },
+    // CV lives at public/RICARDO-ALTAMIRANO-2026.pdf (served from site root).
+    { label: "Download CV", href: "/RICARDO-ALTAMIRANO-2026.pdf", primary: false, external: true },
   ],
 } as const;
 
