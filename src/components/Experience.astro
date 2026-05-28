@@ -1,0 +1,117 @@
+---
+import { experience, education } from "../data/content";
+---
+
+<section class="section experience" id="experience">
+  <div class="container">
+    <p class="marker" data-reveal>
+      <span class="marker__num">04</span><span>Experience</span>
+    </p>
+
+    <ol class="exp__list">
+      {experience.map((job, i) => (
+        <li class="exp__item" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+          <div class="exp__period">
+            <span class="exp__dot" aria-hidden="true"></span>
+            {job.period}
+          </div>
+          <div class="exp__body">
+            <h3 class="exp__role">
+              {job.role} <span class="exp__at">/</span> <span class="exp__company">{job.company}</span>
+            </h3>
+            {job.site && <a class="exp__site" href={`https://${job.site}`} target="_blank" rel="noopener">{job.site} ↗</a>}
+            <p class="exp__summary">{job.summary}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="exp__edu" data-reveal>
+      <span class="eyebrow">Education</span>
+      <p class="exp__edu-text">
+        <strong>{education.school}</strong> — {education.degree}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp__list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .exp__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding-block: clamp(2rem, 5vw, 3rem);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 760px) {
+    .exp__item {
+      grid-template-columns: 14rem 1fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+  }
+
+  .exp__period {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-top: 0.4rem;
+  }
+  .exp__dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    flex: none;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--accent-glow);
+  }
+
+  .exp__role {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 1rem + 1.6vw, 2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .exp__at { color: var(--accent); font-weight: 500; }
+  .exp__company { color: var(--ink); }
+
+  .exp__site {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+    transition: color 0.3s var(--ease);
+  }
+  .exp__site:hover { color: var(--accent); }
+
+  .exp__summary {
+    margin-top: 1rem;
+    color: var(--ink-dim);
+    max-width: 62ch;
+  }
+
+  .exp__edu {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .exp__edu-text {
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
+    color: var(--ink-dim);
+  }
+  .exp__edu-text strong { color: var(--ink); font-weight: 600; }
+</style>

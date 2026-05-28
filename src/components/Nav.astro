@@ -1,0 +1,142 @@
+---
+import { site, nav } from "../data/content";
+---
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#top" class="nav__logo focus-ring" aria-label={`${site.name}, top of page`}>
+      {site.initials}
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {nav.map((item) => (
+        <a href={item.href} class="nav__link focus-ring">{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="nav__right">
+      <button
+        type="button"
+        class="nav__cmdk focus-ring"
+        aria-label="Open command palette"
+        onclick="window.__openCmdk && window.__openCmdk()"
+      >
+        <span class="nav__cmdk-key">⌘K</span>
+      </button>
+      <a href="#contact" class="nav__cta focus-ring">Contact ↗</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease),
+      backdrop-filter 0.4s var(--ease);
+  }
+  .nav.is-scrolled {
+    background: rgba(10, 11, 13, 0.78);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border-bottom-color: var(--line);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav__logo {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .nav__logo:hover { color: var(--accent); }
+
+  .nav__links {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2.4rem);
+  }
+  .nav__link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    position: relative;
+    padding-block: 0.4rem;
+    transition: color 0.3s var(--ease);
+  }
+  .nav__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease);
+  }
+  .nav__link:hover { color: var(--ink); }
+  .nav__link:hover::after { width: 100%; }
+
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .nav__cmdk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    transition: border-color 0.3s var(--ease);
+  }
+  .nav__cmdk:hover { border-color: var(--accent); }
+  .nav__cmdk-key {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+  }
+  .nav__cmdk:hover .nav__cmdk-key { color: var(--accent); }
+
+  .nav__cta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .nav__links { display: none; }
+    .nav__cta { display: inline-block; }
+  }
+</style>
+
+<script>
+  const onScroll = () => {
+    const navEl = document.getElementById("nav");
+    if (!navEl) return;
+    navEl.classList.toggle("is-scrolled", window.scrollY > 24);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  document.addEventListener("astro:page-load", onScroll);
+</script>

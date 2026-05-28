@@ -1,0 +1,145 @@
+---
+import { openSource } from "../data/content";
+---
+
+<section class="section opensource" id="open-source">
+  <div class="container">
+    <p class="marker" data-reveal>
+      <span class="marker__num">03</span><span>Open Source</span>
+    </p>
+    <h2 class="section-title os__title" data-reveal>Public<br />work</h2>
+    <p class="lede os__lede" data-reveal>
+      Curated repos worth reading — not the raw GitHub feed.
+    </p>
+
+    <div class="os__grid">
+      {openSource.map((repo, i) => (
+        <a
+          class="os__card focus-ring"
+          href={repo.href}
+          target="_blank"
+          rel="noopener"
+          data-reveal
+          style={`--reveal-delay:${i * 90}ms`}
+        >
+          <div class="os__card-head">
+            <h3 class="os__name">{repo.name}</h3>
+            <span class="os__status">{repo.status}</span>
+          </div>
+
+          <p class="os__blurb">{repo.blurb}</p>
+
+          {repo.quote && (
+            <blockquote class="os__quote">{repo.quote}</blockquote>
+          )}
+
+          <ul class="os__tags">
+            {repo.tags.map((t) => <li class="chip">{t}</li>)}
+          </ul>
+
+          <span class="os__link">
+            GitHub <span aria-hidden="true">↗</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .os__title { margin-bottom: 1.25rem; }
+  .os__lede { margin-bottom: clamp(3rem, 7vw, 4.5rem); }
+
+  .os__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 880px) {
+    .os__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .os__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    transition: border-color 0.3s var(--ease), background 0.3s var(--ease),
+      transform 0.4s var(--ease);
+  }
+  .os__card:hover {
+    border-color: var(--accent);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+  }
+
+  .os__card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .os__name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.3rem, 1rem + 1.2vw, 1.75rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .os__status {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.32rem 0.55rem;
+    white-space: nowrap;
+  }
+
+  .os__blurb {
+    color: var(--ink-dim);
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+
+  .os__quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--ink);
+    border-left: 2px solid var(--accent);
+    padding: 0.4rem 0 0.4rem 1rem;
+    margin-block: 0.2rem;
+  }
+
+  .os__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+
+  .os__link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 0.4rem;
+    align-self: flex-start;
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    transition: gap 0.3s var(--ease);
+  }
+  .os__card:hover .os__link { gap: 0.7rem; }
+</style>

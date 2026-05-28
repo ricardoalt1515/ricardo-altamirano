@@ -1,0 +1,56 @@
+---
+import { marquee } from "../data/content";
+// Duplicate the track so the loop is seamless.
+const track = [...marquee, ...marquee];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {track.map((item) => (
+      <span class="marquee__item">
+        {item}
+        <span class="marquee__dot">◆</span>
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee {
+    border-block: 1px solid var(--line);
+    overflow: hidden;
+    padding-block: 1.1rem;
+    background: var(--surface);
+    user-select: none;
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+  }
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-inline: 1.5rem;
+  }
+  .marquee__dot {
+    color: var(--accent);
+    font-size: 0.55rem;
+    margin-left: 3rem;
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track { animation: none; }
+  }
+</style>

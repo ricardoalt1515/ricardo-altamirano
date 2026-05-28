@@ -1,0 +1,239 @@
+/* =========================================================================
+   Ricardo Altamirano — design system
+   Brutalist-technical, dark-first, editorial restraint, electric-cyan accent.
+   ========================================================================= */
+
+:root {
+  /* --- Color: dark surfaces --- */
+  --bg: #0a0b0d;
+  --bg-grid: rgba(236, 234, 227, 0.035);
+  --surface: #101216;
+  --surface-2: #15181e;
+
+  /* --- Color: ink --- */
+  --ink: #ECEAE3;          /* warm off-white, never pure white */
+  --ink-dim: #9aa1ab;      /* secondary text */
+  --ink-faint: #5e6571;    /* tertiary / meta */
+
+  /* --- Lines --- */
+  --line: rgba(236, 234, 227, 0.09);
+  --line-strong: rgba(236, 234, 227, 0.20);
+
+  /* --- Accent: electric cyan --- */
+  --accent: #2fe6df;
+  --accent-deep: #0c8f88;  /* legible cyan on the cream section */
+  --accent-glow: rgba(47, 230, 223, 0.16);
+
+  /* --- Cream (inverted section) --- */
+  --cream: #ece8df;
+  --cream-ink: #14161a;
+  --cream-line: rgba(20, 22, 26, 0.16);
+  --cream-line-strong: rgba(20, 22, 26, 0.28);
+
+  /* --- Typography --- */
+  --font-display: "Archivo", "Arial Narrow", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+
+  /* --- Layout --- */
+  --maxw: 1180px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-pad: clamp(5rem, 12vw, 10rem);
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --------------------------------------------------------------------- reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  line-height: 1.62;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+svg { display: block; max-width: 100%; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: #04110f;
+}
+
+/* ------------------------------------------------------------------ scrollbar */
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { background: var(--bg); }
+body::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border: 2px solid var(--bg);
+  border-radius: 0;
+}
+body::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); }
+
+/* ------------------------------------------------------------- shared layout */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-pad);
+  position: relative;
+}
+
+/* Inverted cream section */
+.section--light {
+  background: var(--cream);
+  color: var(--cream-ink);
+  --ink: var(--cream-ink);
+  --ink-dim: #4a4f57;
+  --ink-faint: #767b83;
+  --line: var(--cream-line);
+  --line-strong: var(--cream-line-strong);
+  --accent: var(--accent-deep);
+  --accent-glow: rgba(12, 143, 136, 0.12);
+}
+
+/* --------------------------------------------------------- section marker */
+.marker {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 2.5rem;
+}
+.marker::before {
+  content: "";
+  width: clamp(2rem, 5vw, 3.5rem);
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
+.marker .marker__num { color: var(--accent); }
+
+/* --------------------------------------------------------- display headings */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.1rem, 6.5vw, 4.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.lede {
+  color: var(--ink-dim);
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem);
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+/* ----------------------------------------------------------------- chips */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  border: 1px solid var(--line-strong);
+  padding: 0.4rem 0.7rem;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+/* --------------------------------------------------------- reveal on scroll */
+/* Gated behind html.js so content is always visible if JS is disabled or fails. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------- link, arrow */
+.arrow-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.3s var(--ease);
+}
+.arrow-link:hover { gap: 0.85rem; }
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

@@ -1,0 +1,78 @@
+---
+import { about } from "../data/content";
+---
+
+<section class="section about" id="about">
+  <div class="container">
+    <p class="marker" data-reveal>
+      <span class="marker__num">01</span><span>About</span>
+    </p>
+
+    <div class="about__grid">
+      <div class="about__intro">
+        {about.intro.map((p, i) => (
+          <p class="about__para" data-reveal style={`--reveal-delay:${i * 90}ms`}>{p}</p>
+        ))}
+      </div>
+
+      <div class="about__beliefs">
+        <p class="marker about__beliefs-marker" data-reveal>
+          <span>What I believe</span>
+        </p>
+        <ul class="about__belief-list">
+          {about.beliefs.map((b, i) => (
+            <li class="about__belief" data-reveal style={`--reveal-delay:${i * 110}ms`}>{b}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 7vw, 6rem);
+  }
+  @media (min-width: 900px) {
+    .about__grid { grid-template-columns: 1.05fr 0.95fr; }
+  }
+
+  .about__para {
+    font-size: clamp(1.15rem, 1rem + 0.7vw, 1.6rem);
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 30ch;
+  }
+  .about__para + .about__para { margin-top: 1.5rem; }
+  .about__para:last-child { color: var(--ink-dim); }
+
+  .about__beliefs-marker { margin-bottom: 2rem; }
+  .about__beliefs-marker::before { background: var(--accent); }
+
+  .about__belief-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .about__belief {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.05rem, 0.95rem + 0.6vw, 1.45rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    padding-block: clamp(1.25rem, 3vw, 1.75rem);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  .about__belief::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    top: clamp(1.25rem, 3vw, 1.75rem);
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+</style>

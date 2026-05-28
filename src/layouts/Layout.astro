@@ -1,0 +1,106 @@
+---
+import "../styles/global.css";
+import { site } from "../data/content";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = site.seoTitle,
+  description = site.seoDescription,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).toString();
+const ogImage = new URL("/og.png", site.url).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Mark JS as available before paint so reveal styles only apply with JS. -->
+    <script is:inline>document.documentElement.classList.add("js");</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — ${site.role}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#0a0b0d" />
+
+    <!-- Fonts: Archivo (display) · IBM Plex Sans (body) · IBM Plex Mono (labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <slot />
+
+    <style>
+      /* Faint engineering grid behind everything */
+      .grid-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image:
+          linear-gradient(to right, var(--bg-grid) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--bg-grid) 1px, transparent 1px);
+        background-size: clamp(48px, 7vw, 96px) clamp(48px, 7vw, 96px);
+        mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 35%, transparent 100%);
+        -webkit-mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 35%, transparent 100%);
+      }
+    </style>
+
+    <script>
+      // Reveal-on-scroll: adds .is-visible to [data-reveal] elements as they enter view.
+      const reveal = () => {
+        const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+        if (!("IntersectionObserver" in window)) {
+          els.forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        els.forEach((el) => io.observe(el));
+      };
+
+      reveal();
+      document.addEventListener("astro:page-load", reveal);
+    </script>
+  </body>
+</html>

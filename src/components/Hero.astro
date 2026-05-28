@@ -1,0 +1,237 @@
+---
+import { hero, site } from "../data/content";
+
+// Split the headline so the accent phrase can be highlighted.
+const [before, after] = hero.headline.split(hero.accent);
+const nameParts = site.name.split(" ");
+---
+
+<section class="hero" id="top">
+  <div class="container hero__inner">
+    <p class="eyebrow hero__eyebrow load" style="--i:0">
+      <span>{hero.eyebrowLeft}</span>
+      <span class="hero__eyebrow-line" aria-hidden="true"></span>
+      <span class="hero__eyebrow-right">{hero.eyebrowRight}</span>
+    </p>
+
+    <h1 class="display hero__name">
+      {nameParts.map((part, i) => (
+        <span class="hero__name-line load" style={`--i:${i + 1}`}>{part}</span>
+      ))}
+    </h1>
+
+    <p class="hero__headline load" style="--i:4">
+      {before}<em>{hero.accent}</em>{after}
+    </p>
+
+    <p class="lede hero__lede load" style="--i:5">{hero.lede}</p>
+
+    <p class="hero__status load" style="--i:6">
+      <span class="hero__status-dot" aria-hidden="true"></span>
+      <span class="hero__status-label">{hero.status.label}</span>
+      <span class="hero__status-sep" aria-hidden="true">/</span>
+      <span class="hero__status-current">{hero.status.currently}</span>
+    </p>
+
+    <ul class="hero__tags load" style="--i:7">
+      {hero.tags.map((tag) => (
+        <li class="chip">{tag}</li>
+      ))}
+    </ul>
+
+    <div class="hero__ctas load" style="--i:8">
+      {hero.ctas.map((cta) => (
+        <a
+          href={cta.href}
+          class={`btn ${cta.primary ? "btn--primary" : "btn--ghost"} focus-ring`}
+          {...("external" in cta && cta.external ? { target: "_blank", rel: "noopener" } : {})}
+        >
+          {cta.label}
+          {"external" in cta && cta.external ? <span class="btn__arrow"> ↓</span> : null}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <a href="#about" class="hero__scroll load" style="--i:9" aria-label="Scroll to about">
+    <span>Scroll</span>
+    <span class="hero__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-block: 7rem 5rem;
+  }
+  .hero__inner { width: 100%; }
+
+  .hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--accent);
+    margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
+  }
+  .hero__eyebrow-line {
+    width: clamp(1.5rem, 4vw, 3rem);
+    height: 1px;
+    background: var(--line-strong);
+  }
+  .hero__eyebrow-right { color: var(--ink-dim); }
+
+  .hero__name {
+    font-size: clamp(2.9rem, 13vw, 9.5rem);
+    color: var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: clamp(0.6rem, 2.5vw, 1.75rem);
+    row-gap: 0;
+  }
+
+  .hero__headline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.35rem, 1rem + 2.4vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    max-width: 22ch;
+    margin-top: clamp(1.75rem, 4vw, 2.75rem);
+  }
+  .hero__headline em {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .hero__lede { margin-top: 1.5rem; }
+
+  .hero__status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+  }
+  .hero__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #36e07a;
+    box-shadow: 0 0 0 0 rgba(54, 224, 122, 0.55);
+    animation: pulse 2.2s var(--ease) infinite;
+    flex: none;
+  }
+  .hero__status-label { color: var(--ink); }
+  .hero__status-sep { color: var(--accent); }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(54, 224, 122, 0.5); }
+    70% { box-shadow: 0 0 0 7px rgba(54, 224, 122, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(54, 224, 122, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__status-dot { animation: none; }
+  }
+
+  .hero__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2.25rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.95rem 1.6rem;
+    border: 1px solid var(--line-strong);
+    transition: background 0.3s var(--ease), color 0.3s var(--ease),
+      border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .btn--primary {
+    background: var(--accent);
+    color: #04110f;
+    border-color: var(--accent);
+  }
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+  }
+  .btn--ghost { color: var(--ink); }
+  .btn--ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .btn__arrow { letter-spacing: 0; }
+
+  .hero__scroll {
+    position: absolute;
+    left: var(--gutter);
+    bottom: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero__scroll-line {
+    width: 48px;
+    height: 1px;
+    background: var(--line-strong);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero__scroll-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-100%);
+    animation: scrollSlide 2.4s var(--ease) infinite;
+  }
+  @keyframes scrollSlide {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+  @media (max-width: 640px) {
+    .hero__scroll { display: none; }
+  }
+
+  /* Staggered load entrance */
+  .load {
+    opacity: 0;
+    transform: translateY(26px);
+    animation: heroIn 0.85s var(--ease) forwards;
+    animation-delay: calc(var(--i) * 75ms + 120ms);
+  }
+  @keyframes heroIn {
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .load { opacity: 1; transform: none; animation: none; }
+  }
+</style>

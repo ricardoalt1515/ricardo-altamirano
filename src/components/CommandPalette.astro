@@ -1,0 +1,380 @@
+---
+import { nav, contact, hero, site } from "../data/content";
+
+const cvHref =
+  hero.ctas.find((c) => "external" in c && c.external)?.href ?? "/Ricardo-Altamirano-CV.pdf";
+
+type Command = {
+  group: string;
+  label: string;
+  kind: "nav" | "external" | "copy";
+  target: string;
+  icon: string;
+};
+
+const commands: Command[] = [
+  ...nav.map((n) => ({
+    group: "Navigation",
+    label: `Go to ${n.label}`,
+    kind: "nav" as const,
+    target: n.href,
+    icon: "→",
+  })),
+  {
+    group: "Links",
+    label: "Open GitHub",
+    kind: "external",
+    target: "https://github.com/ricardoalt1515",
+    icon: "↗",
+  },
+  {
+    group: "Links",
+    label: "Open LinkedIn",
+    kind: "external",
+    target: "https://linkedin.com/in/ricardoaltamirano",
+    icon: "↗",
+  },
+  {
+    group: "Actions",
+    label: "Email Ricardo",
+    kind: "external",
+    target: `mailto:${contact.email}`,
+    icon: "✉",
+  },
+  {
+    group: "Actions",
+    label: "Copy email address",
+    kind: "copy",
+    target: contact.email,
+    icon: "⧉",
+  },
+  { group: "Actions", label: "Download CV", kind: "external", target: cvHref, icon: "↓" },
+];
+
+const groups = [...new Set(commands.map((c) => c.group))];
+---
+
+<div class="cmdk" id="cmdk" hidden>
+  <div class="cmdk__backdrop" data-cmdk-close></div>
+  <div class="cmdk__panel" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmdk__input-row">
+      <span class="cmdk__prompt" aria-hidden="true">/</span>
+      <input
+        class="cmdk__input"
+        id="cmdk-input"
+        type="text"
+        placeholder="Type a command or search…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search commands"
+      />
+      <kbd class="cmdk__esc">ESC</kbd>
+    </div>
+
+    <ul class="cmdk__list" id="cmdk-list" role="listbox">
+      {groups.map((g) => (
+        <li class="cmdk__group" data-group={g}>
+          <span class="cmdk__group-label">{g}</span>
+          <ul>
+            {commands
+              .filter((c) => c.group === g)
+              .map((c) => (
+                <li
+                  class="cmdk__item"
+                  role="option"
+                  data-label={c.label.toLowerCase()}
+                  data-kind={c.kind}
+                  data-target={c.target}
+                >
+                  <span class="cmdk__icon" aria-hidden="true">{c.icon}</span>
+                  <span class="cmdk__label">{c.label}</span>
+                  <span class="cmdk__enter" aria-hidden="true">↵</span>
+                </li>
+              ))}
+          </ul>
+        </li>
+      ))}
+      <li class="cmdk__empty" id="cmdk-empty" hidden>No matches.</li>
+    </ul>
+
+    <div class="cmdk__footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cmdk {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 14vh;
+    padding-inline: 1rem;
+  }
+  .cmdk[hidden] { display: none; }
+
+  .cmdk__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 6, 7, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: cmdkFade 0.2s var(--ease);
+  }
+
+  .cmdk__panel {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+    animation: cmdkIn 0.22s var(--ease);
+  }
+  @keyframes cmdkFade { from { opacity: 0; } }
+  @keyframes cmdkIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  }
+
+  .cmdk__input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .cmdk__prompt {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .cmdk__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+  .cmdk__input::placeholder { color: var(--ink-faint); }
+  .cmdk__esc {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    border: 1px solid var(--line-strong);
+    padding: 0.2rem 0.4rem;
+  }
+
+  .cmdk__list {
+    list-style: none;
+    max-height: 52vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+  }
+  .cmdk__group { list-style: none; }
+  .cmdk__group > ul { list-style: none; }
+  .cmdk__group[hidden] { display: none; }
+  .cmdk__group-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.75rem 0.6rem 0.4rem;
+  }
+
+  .cmdk__item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 0.6rem;
+    cursor: pointer;
+    color: var(--ink-dim);
+    border: 1px solid transparent;
+    transition: background 0.15s var(--ease), color 0.15s var(--ease);
+  }
+  .cmdk__item[hidden] { display: none; }
+  .cmdk__item.is-active,
+  .cmdk__item:hover {
+    background: var(--surface-2);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .cmdk__icon {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    width: 1.2rem;
+    text-align: center;
+    flex: none;
+  }
+  .cmdk__label { flex: 1; font-size: 0.92rem; }
+  .cmdk__enter {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s var(--ease);
+  }
+  .cmdk__item.is-active .cmdk__enter { opacity: 1; }
+
+  .cmdk__empty {
+    list-style: none;
+    padding: 1.5rem 0.6rem;
+    text-align: center;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .cmdk__empty[hidden] { display: none; }
+
+  .cmdk__footer {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0.7rem 1.1rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+  }
+  .cmdk__footer kbd {
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    padding: 0.05rem 0.3rem;
+    margin-right: 0.15rem;
+  }
+  @media (max-width: 560px) {
+    .cmdk__footer { display: none; }
+  }
+</style>
+
+<script>
+  const setup = () => {
+    const root = document.getElementById("cmdk");
+    const input = document.getElementById("cmdk-input") as HTMLInputElement | null;
+    const list = document.getElementById("cmdk-list");
+    const empty = document.getElementById("cmdk-empty");
+    if (!root || !input || !list || !empty) return;
+
+    const items = () => Array.from(list.querySelectorAll<HTMLElement>(".cmdk__item"));
+    const visibleItems = () => items().filter((el) => !el.hidden);
+    let lastFocused: HTMLElement | null = null;
+
+    const setActive = (idx: number) => {
+      const vis = visibleItems();
+      vis.forEach((el, i) => el.classList.toggle("is-active", i === idx));
+      vis[idx]?.scrollIntoView({ block: "nearest" });
+    };
+    const activeIndex = () =>
+      visibleItems().findIndex((el) => el.classList.contains("is-active"));
+
+    const open = () => {
+      if (!root.hidden) return;
+      lastFocused = document.activeElement as HTMLElement;
+      root.hidden = false;
+      input.value = "";
+      filter("");
+      requestAnimationFrame(() => input.focus());
+    };
+    const close = () => {
+      root.hidden = true;
+      lastFocused?.focus?.();
+    };
+
+    const filter = (q: string) => {
+      const query = q.trim().toLowerCase();
+      items().forEach((el) => {
+        const label = el.dataset.label || "";
+        el.hidden = query !== "" && !label.includes(query);
+      });
+      // hide empty groups
+      list.querySelectorAll<HTMLElement>(".cmdk__group").forEach((g) => {
+        const anyVisible = Array.from(g.querySelectorAll<HTMLElement>(".cmdk__item")).some(
+          (el) => !el.hidden
+        );
+        g.hidden = !anyVisible;
+      });
+      const vis = visibleItems();
+      empty.hidden = vis.length > 0;
+      setActive(vis.length ? 0 : -1);
+    };
+
+    const exec = (el?: HTMLElement) => {
+      if (!el) return;
+      const kind = el.dataset.kind;
+      const target = el.dataset.target || "";
+      close();
+      if (kind === "nav") {
+        const node = document.querySelector(target);
+        node?.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", target);
+      } else if (kind === "external") {
+        if (target.startsWith("mailto:") || target.startsWith("/")) {
+          window.location.href = target;
+        } else {
+          window.open(target, "_blank", "noopener");
+        }
+      } else if (kind === "copy") {
+        navigator.clipboard?.writeText(target).catch(() => {});
+      }
+    };
+
+    // Global shortcuts
+    document.addEventListener("keydown", (e) => {
+      const typing =
+        document.activeElement &&
+        ["INPUT", "TEXTAREA"].includes((document.activeElement as HTMLElement).tagName) &&
+        document.activeElement !== input;
+
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        root.hidden ? open() : close();
+        return;
+      }
+      if (e.key === "/" && root.hidden && !typing) {
+        e.preventDefault();
+        open();
+        return;
+      }
+      if (root.hidden) return;
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const vis = visibleItems();
+        if (vis.length) setActive((activeIndex() + 1) % vis.length);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const vis = visibleItems();
+        if (vis.length) setActive((activeIndex() - 1 + vis.length) % vis.length);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        exec(visibleItems()[activeIndex()]);
+      }
+    });
+
+    input.addEventListener("input", () => filter(input.value));
+    list.addEventListener("click", (e) => {
+      const item = (e.target as HTMLElement).closest<HTMLElement>(".cmdk__item");
+      if (item) exec(item);
+    });
+    root.querySelector("[data-cmdk-close]")?.addEventListener("click", close);
+
+    // Expose an opener for the nav trigger button.
+    (window as any).__openCmdk = open;
+  };
+
+  setup();
+  document.addEventListener("astro:page-load", setup);
+</script>

@@ -1,0 +1,159 @@
+---
+import { stack } from "../data/content";
+
+// Group label -> JSON key (snake_case)
+const toKey = (label: string) =>
+  label.toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+
+// Raw JSON used by the copy button.
+const manifest = Object.fromEntries(stack.map((g) => [toKey(g.group), g.items]));
+const manifestJson = JSON.stringify(manifest, null, 2);
+---
+
+<section class="section stack" id="stack">
+  <div class="container">
+    <p class="marker" data-reveal>
+      <span class="marker__num">05</span><span>Stack</span>
+    </p>
+    <h2 class="section-title stack__title" data-reveal>The<br />manifest</h2>
+
+    <div class="manifest" data-reveal>
+      <div class="manifest__bar">
+        <span class="manifest__dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="manifest__file">stack.json</span>
+        <button class="manifest__copy focus-ring" type="button" data-copy={manifestJson}>
+          <span class="manifest__copy-label">copy</span>
+        </button>
+      </div>
+
+      <div class="manifest__code">
+        <div class="m-line"><span class="tok-punc">{"{"}</span></div>
+        {stack.map((group, gi) => (
+          <div class="m-group">
+            <div class="m-line m-indent">
+              <span class="tok-key">"{toKey(group.group)}"</span><span class="tok-punc">: [</span>
+            </div>
+            <div class="m-vals">
+              {group.items.map((item, ii) => (
+                <span class="m-val">
+                  <span class="tok-str">"{item}"</span>{ii < group.items.length - 1 ? <span class="tok-punc">,</span> : null}
+                </span>
+              ))}
+            </div>
+            <div class="m-line m-indent">
+              <span class="tok-punc">]{gi < stack.length - 1 ? "," : ""}</span>
+            </div>
+          </div>
+        ))}
+        <div class="m-line"><span class="tok-punc">{"}"}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack__title { margin-bottom: clamp(2.5rem, 6vw, 3.5rem); }
+
+  .manifest {
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    max-width: 880px;
+    overflow: hidden;
+  }
+
+  .manifest__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .manifest__dots { display: inline-flex; gap: 0.4rem; }
+  .manifest__dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--line-strong);
+  }
+  .manifest__dots span:first-child { background: #ff5f57; opacity: 0.5; }
+  .manifest__dots span:nth-child(2) { background: #febc2e; opacity: 0.5; }
+  .manifest__dots span:nth-child(3) { background: #28c840; opacity: 0.5; }
+
+  .manifest__file {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-dim);
+  }
+
+  .manifest__copy {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+    transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .manifest__copy:hover { color: var(--accent); border-color: var(--accent); }
+  .manifest__copy.is-copied { color: var(--accent); border-color: var(--accent); }
+
+  .manifest__code {
+    padding: clamp(1.1rem, 3vw, 1.6rem) clamp(1.1rem, 3vw, 1.75rem);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 0.72rem + 0.3vw, 0.9rem);
+    line-height: 1.55;
+    color: var(--ink-dim);
+    overflow-x: auto;
+  }
+
+  .m-group { margin-block: 0.55rem; }
+  .m-group:first-of-type { margin-top: 0.25rem; }
+  .m-line { white-space: nowrap; }
+  .m-indent { padding-left: 1.5ch; }
+
+  /* Inline, wrapping values — keeps JSON readable but compact */
+  .m-vals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.55rem;
+    padding-left: 3ch;
+  }
+  .m-val { white-space: nowrap; }
+
+  .tok-key { color: var(--accent); }
+  .tok-str { color: var(--ink); transition: color 0.2s var(--ease); }
+  .tok-punc { color: var(--ink-faint); }
+  .m-val:hover .tok-str { color: var(--accent); }
+</style>
+
+<script>
+  const setup = () => {
+    document.querySelectorAll<HTMLButtonElement>(".manifest__copy").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const text = btn.getAttribute("data-copy") || "";
+        try {
+          await navigator.clipboard.writeText(text);
+          const label = btn.querySelector(".manifest__copy-label");
+          if (label) label.textContent = "copied ✓";
+          btn.classList.add("is-copied");
+          setTimeout(() => {
+            if (label) label.textContent = "copy";
+            btn.classList.remove("is-copied");
+          }, 1600);
+        } catch {
+          /* clipboard unavailable */
+        }
+      });
+    });
+  };
+  setup();
+  document.addEventListener("astro:page-load", setup);
+</script>
