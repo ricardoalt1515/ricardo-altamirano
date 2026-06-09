@@ -54,6 +54,8 @@ export const marquee = [
   "Subagent Orchestration",
   "Tool Calling",
   "Guardrails",
+  "AgentOps",
+  "LLM-as-Judge",
   "MCP",
   "A2A Protocol",
 ] as const;
@@ -98,8 +100,8 @@ export const method = {
       detail: "People own what becomes ground truth; agents retrieve, draft, and propose.",
     },
     {
-      title: "Observability in the loop",
-      detail: "Cost, latency, and failures traced per run, so regressions surface fast.",
+      title: "Budgets and observability in the loop",
+      detail: "Every run has explicit latency and cost budgets, traced end to end, so regressions surface fast.",
     },
   ],
 } as const;
@@ -240,6 +242,7 @@ export const stack: { group: string; items: string[] }[] = [
     items: [
       "Agent Harnesses",
       "Context Engineering",
+      "Memory & Context Management",
       "Claude Skills",
       "Tool Calling",
       "RAG",
@@ -247,7 +250,8 @@ export const stack: { group: string; items: string[] }[] = [
       "Structured Outputs",
       "Multimodal",
       "Subagent Orchestration",
-      "Guardrails (OWASP LLM)",
+      "Guardrails (OWASP Agentic Top 10)",
+      "Prompt Caching & Cost Optimization",
       "LangChain",
       "LangGraph",
       "AI SDK ToolLoopAgent",
@@ -280,10 +284,12 @@ export const stack: { group: string; items: string[] }[] = [
     items: [
       "E2B / Firecracker Sandboxes",
       "Least-Privilege Tools",
+      "AgentOps (OpenTelemetry)",
       "LangSmith",
       "Phoenix / Arize",
       "Eval Pipelines (CI-gated)",
-      "Cost & Latency Observability",
+      "LLM-as-Judge Evals",
+      "Cost & Latency Budgets",
     ],
   },
   {
