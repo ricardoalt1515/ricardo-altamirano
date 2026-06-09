@@ -1,0 +1,49 @@
+# Ricardo Altamirano — AI Engineer
+
+> AI Engineer & Forward-Deployed Engineer building production agents and the harnesses they run on — context engineering, evals, guardrails, and vertical AI inside real regulated workflows. Based in Los Mochis, Sinaloa, Mexico. Currently building vertical AI at Hydrous Group. Open to AI Engineer & Forward-Deployed roles.
+
+Core thesis: don't build the agent — build the operating system the agent must use. An agent is a model plus a harness; the model is the easy part. The harness is the work: context, tools, evals, guardrails.
+
+## Method
+
+- Structured outputs over free text: models return typed, validated objects.
+- Deterministic logic outside the model: business rules live in code the agent calls, not in prompts.
+- Evals before deploy: changes ship behind eval suites in CI.
+- Least-privilege tool execution: narrowest tool surface, sandboxed.
+- Humans approve canonical truth: agents retrieve, draft, and propose.
+- Budgets and observability in the loop: explicit latency and cost budgets per run, traced end to end.
+
+## Selected Work
+
+- Vertical AI platform for regulated operations (Hydrous Group, in production): agents operating on a deterministic vertical core — humans approve canonical truth; agents handle retrieval, tool execution, and structured drafts. Least-privilege tools, sandboxed execution, evals in the loop.
+- Company-wide knowledge layer with Claude Skills (Hydrous Group, internal platform): team expertise packaged as model-invoked Claude Skills, distributed through an internal marketplace with per-team governance, subagents for review, lifecycle hooks, MCP servers, and OpenTelemetry usage analytics.
+- Multimodal diagnostics & proposal generation (Hydrous Group): multimodal AI grounding analysis in domain knowledge, generating client-ready technical proposals with dynamic tables, charts, and diagrams.
+- Enterprise knowledge & proposal platform (DVAWEB): retrieval integrated with CRM and proposal workflows in real time, plus NL-to-SQL for non-technical teams — 78% faster proposal turnaround.
+- Intelligent parking platform (DVAWEB): end-to-end product build — architecture, backend, frontend, production rollout.
+
+## Open Source
+
+- [SecondStream](https://github.com/ricardoalt1515/Second-Stream): vertical operating core for regulated industrial streams — canonical data, evidence, workflow state, assessments, offers, pricing, and the audit trail AI agents must operate on.
+- [Chamai](https://github.com/ricardoalt1515/chamai): white-label AI agent workspace for vertical workflows — per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock, with prompt-cache-aware system prompt composition and per-run cost estimation.
+
+## Experience
+
+- Hydrous Group — AI Engineer (Jan 2025 — present): vertical AI platforms and governed agent workflows for regulated industrial operations.
+- DVAWEB — Software Engineer (Nov 2023 — Jan 2025): intelligent parking platform end-to-end plus AI internal tools (CRM retrieval, NL-to-SQL, enterprise knowledge platform).
+- Education: B.S. in Software Engineering, Universidad Autónoma de Occidente.
+
+## Stack
+
+- Languages: Python, TypeScript, JavaScript, Go, SQL.
+- AI systems: agent harnesses, context engineering, memory & context management, Claude Skills, tool calling, RAG, agentic RAG, structured outputs, multimodal, subagent orchestration, guardrails (OWASP Agentic Top 10), prompt caching & cost optimization, LangChain, LangGraph, AI SDK ToolLoopAgent, Amazon Bedrock, MCP, A2A Protocol, vector DBs.
+- Agent infra & evals: E2B/Firecracker sandboxes, least-privilege tools, AgentOps (OpenTelemetry), LangSmith, Phoenix/Arize, CI-gated eval pipelines, LLM-as-judge evals, cost & latency budgets.
+- Web & APIs: FastAPI, Next.js, React, REST, WebSockets.
+- Cloud & data: AWS, Azure, GCP, Docker, Terraform, CI/CD, GitHub Actions, Amplify, DynamoDB, PostgreSQL, MongoDB, Redis.
+- Practice: Spec-Driven Development, eval-driven development, agentic coding, TDD.
+
+## Contact
+
+- Email: ricardoaltamirano1515@gmail.com
+- [LinkedIn](https://linkedin.com/in/ricardoaltamirano)
+- [GitHub](https://github.com/ricardoalt1515)
+- [CV (PDF)](https://ricardo-altamirano.vercel.app/RICARDO-ALTAMIRANO-2026.pdf)
