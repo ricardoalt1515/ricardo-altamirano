@@ -190,9 +190,9 @@ export const openSource: OpenSourceItem[] = [
     name: "Chamai",
     href: "https://github.com/ricardoalt1515/chamai",
     blurb:
-      "White-label AI agent workspace for vertical workflows. A reusable product shell — auth, threads, attachments, streaming, artifact generation — where each vertical owns its prompt, skills, tools, and artifact schemas, resolved at request time by a per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock.",
+      "White-label AI agent workspace for vertical workflows. A reusable product shell — auth, threads, attachments, streaming, artifact generation — where each vertical owns its prompt, skills, tools, and artifact schemas, resolved at request time by a per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock. Ships with a vitest-native eval layer: a recorded-replay deterministic gate on every PR (schema validity, tool sequence, step and cost budgets) plus LLM-as-judge scoring with a human-calibration loop.",
     status: "In development",
-    tags: ["Next.js", "AI SDK", "ToolLoopAgent", "Amazon Bedrock", "Amplify"],
+    tags: ["Next.js", "AI SDK", "Amazon Bedrock", "CI-Gated Evals", "LLM-as-Judge"],
   },
 ];
 

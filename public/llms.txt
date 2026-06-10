@@ -24,7 +24,7 @@ Core thesis: don't build the agent — build the operating system the agent must
 ## Open Source
 
 - [SecondStream](https://github.com/ricardoalt1515/Second-Stream): vertical operating core for regulated industrial streams — canonical data, evidence, workflow state, assessments, offers, pricing, and the audit trail AI agents must operate on.
-- [Chamai](https://github.com/ricardoalt1515/chamai): white-label AI agent workspace for vertical workflows — per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock, with prompt-cache-aware system prompt composition and per-run cost estimation.
+- [Chamai](https://github.com/ricardoalt1515/chamai): white-label AI agent workspace for vertical workflows — per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock, with prompt-cache-aware system prompt composition and per-run cost estimation. Includes a vitest-native eval suite: recorded-replay deterministic gate on every PR (schema, tool sequence, step and cost budgets) plus LLM-as-judge scoring with a human-calibration loop.
 
 ## Experience
 
