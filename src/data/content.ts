@@ -311,7 +311,7 @@ export const contact = {
   email: "ricardoaltamirano1515@gmail.com",
   links: [
     { label: "Email", href: "mailto:ricardoaltamirano1515@gmail.com" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/ricardoaltamirano" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/ricardo-altamirano-b7a601318/" },
     { label: "GitHub", href: "https://github.com/ricardoalt1515" },
   ],
 } as const;

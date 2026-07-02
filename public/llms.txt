@@ -44,6 +44,6 @@ Core thesis: don't build the agent — build the operating system the agent must
 ## Contact
 
 - Email: ricardoaltamirano1515@gmail.com
-- [LinkedIn](https://linkedin.com/in/ricardoaltamirano)
+- [LinkedIn](https://www.linkedin.com/in/ricardo-altamirano-b7a601318/)
 - [GitHub](https://github.com/ricardoalt1515)
 - [CV (PDF)](https://ricardo-altamirano.vercel.app/RICARDO-ALTAMIRANO-2026.pdf)
