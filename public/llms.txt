@@ -35,7 +35,7 @@ Core thesis: don't build the agent — build the operating system the agent must
 ## Stack
 
 - Languages: Python, TypeScript, JavaScript, Go, SQL.
-- AI systems: agent harnesses, context engineering, memory & context management, Claude Skills, tool calling, RAG, agentic RAG, structured outputs, multimodal, voice agents (STT/TTS), subagent orchestration, guardrails (OWASP Agentic Top 10), prompt caching & cost optimization, LangChain, LangGraph, AI SDK ToolLoopAgent, Amazon Bedrock, MCP, A2A Protocol, vector DBs.
+- AI systems: agent harnesses, context engineering, memory & context management, Claude Skills, tool calling, RAG, agentic RAG, structured outputs, multimodal, voice agents (STT/TTS), subagent orchestration, guardrails (OWASP), prompt caching & cost optimization, LangChain, LangGraph, AI SDK ToolLoopAgent, Amazon Bedrock, MCP, A2A Protocol, vector DBs.
 - Agent infra & evals: E2B/Firecracker sandboxes, least-privilege tools, observability & tracing (OpenTelemetry GenAI), CI-gated eval pipelines, LLM-as-judge evals, cost & latency budgets.
 - Web & APIs: FastAPI, Next.js, React, REST, WebSockets.
 - Cloud & data: AWS, Azure, GCP, Docker, Kubernetes, Terraform, CI/CD, GitHub Actions, Amplify, DynamoDB, PostgreSQL, MongoDB, Redis.

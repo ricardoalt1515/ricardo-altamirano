@@ -251,7 +251,7 @@ export const stack: { group: string; items: string[] }[] = [
       "Multimodal",
       "Voice Agents (STT/TTS)",
       "Subagent Orchestration",
-      "Guardrails (OWASP Agentic Top 10)",
+      "Guardrails (OWASP)",
       "Prompt Caching & Cost Optimization",
       "LangChain",
       "LangGraph",

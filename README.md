@@ -1,26 +1,31 @@
-# Ricardo Altamirano — Personal Site
+# ricardo-altamirano.vercel.app
 
-A fast, static personal landing page built with [Astro](https://astro.build). Dark-first,
-brutalist-technical design with an electric-cyan accent.
+Personal site and CV of **Ricardo Altamirano** — AI Engineer. Built with [Astro](https://astro.build),
+fully static, dark-first brutalist-technical design with an electric-cyan accent.
 
-## Editing content
+Live: [ricardo-altamirano.vercel.app](https://ricardo-altamirano.vercel.app)
 
-**All content lives in one file:** [`src/data/content.ts`](src/data/content.ts).
+## Structure
 
-Change your bio, projects, experience, stack, and links there — no need to touch any markup.
-Each section of the file is commented to show what it controls.
+- `src/data/content.ts` — all site content (bio, projects, experience, stack, links). Sections are commented; markup rarely needs touching.
+- `src/components/` — one Astro component per section (Hero, About, Work, Experience, Stack, OpenSource, Contact) plus CommandPalette and the AgentTrace hero animation.
+- `cv/cv.html` — the CV source of truth. The published PDF is generated from it (see below).
+- `public/RICARDO-ALTAMIRANO-2026.pdf` — the generated CV served by the hero's **Download CV** button.
+- `public/llms.txt` — agent-readable summary of the site; kept in sync with `content.ts` manually.
 
-A few useful spots:
+## Updating the CV
 
-- `site` — name, role, SEO title/description, and your deployed URL (used for canonical + Open Graph).
-- `hero.headline` / `hero.accent` — the big statement. Keep `accent` as an exact substring of `headline`; that phrase is highlighted in cyan.
-- `projects` — add/remove cards in *Selected Work*. Set `metric` for a highlighted stat (e.g. `"78% faster"`).
-- `stack` — grouped tech chips.
+Edit `cv/cv.html`, then regenerate the PDF:
 
-### Add your CV
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf=public/RICARDO-ALTAMIRANO-2026.pdf \
+  "file://$PWD/cv/cv.html"
+```
 
-Drop your PDF at `public/RICARDO-ALTAMIRANO-2026.pdf` so the hero's **Download CV** button works.
-(Rename it or update the path in `hero.ctas` if you use a different filename.)
+Keep `cv/cv.html`, `src/data/content.ts`, and `public/llms.txt` telling the same story —
+recruiters and LLM screeners cross-check them.
 
 ## Design system
 
@@ -38,10 +43,5 @@ Fonts: **Archivo** (display), **IBM Plex Sans** (body), **IBM Plex Mono** (label
 
 ## Deploy
 
-The site is fully static (`dist/`). Easiest options:
-
-- **Vercel** — import the repo, framework auto-detected as Astro, deploy. Free.
-- **Netlify** — build command `npm run build`, publish directory `dist`.
-- **GitHub Pages** — see the [Astro deploy guide](https://docs.astro.build/en/guides/deploy/github/).
-
-After you have a domain, set `site` in both `astro.config.mjs` and `src/data/content.ts`.
+Deployed on **Vercel** from this repo's `main` branch; every push redeploys the site
+(including the CV PDF and `llms.txt`).
