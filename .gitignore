@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # local agent tooling (SDD skill registry)
 .atl/
+
+# scratch files and local agent tooling
+/progress.md
+/research.md
+/.pi/
+/.pi-subagents/

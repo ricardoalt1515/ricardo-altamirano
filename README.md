@@ -19,7 +19,7 @@ A few useful spots:
 
 ### Add your CV
 
-Drop your PDF at `public/Ricardo-Altamirano-CV.pdf` so the hero's **Download CV** button works.
+Drop your PDF at `public/RICARDO-ALTAMIRANO-2026.pdf` so the hero's **Download CV** button works.
 (Rename it or update the path in `hero.ctas` if you use a different filename.)
 
 ## Design system

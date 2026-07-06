@@ -30,10 +30,16 @@ const year = new Date().getFullYear();
     <div class="container footer__inner">
       <span class="footer__name">{site.initials}</span>
       <span class="footer__meta">{site.location}</span>
-      <span class="footer__meta">© {year} {site.name}</span>
+      <span class="footer__meta">© <span id="footer-year">{year}</span> {site.name}</span>
     </div>
   </footer>
 </section>
+
+<script>
+  // Keep the footer year current even if the site isn't rebuilt after Jan 1.
+  const yearEl = document.getElementById("footer-year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+</script>
 
 <style>
   .contact { padding-bottom: 0; }
