@@ -183,7 +183,7 @@ export const openSource: OpenSourceItem[] = [
     blurb:
       "Vertical operating core for regulated industrial streams. Owns canonical data, evidence, workflow state, assessments, offers, pricing, outcomes, and the audit trail that AI agents must operate on. Humans approve canonical truth; the database owns workflow state.",
     quote: "Don't build the agent. Build the operating system the agent must use.",
-    status: "Active MVP",
+    status: "In active development",
     tags: ["Python", "Vertical AI", "Agent Operating Core", "Workflow State"],
   },
   {
@@ -249,7 +249,7 @@ export const stack: { group: string; items: string[] }[] = [
       "Agentic RAG",
       "Structured Outputs",
       "Multimodal",
-      "Voice AI (STT/TTS)",
+      "Voice Agents (STT/TTS)",
       "Subagent Orchestration",
       "Guardrails (OWASP Agentic Top 10)",
       "Prompt Caching & Cost Optimization",
@@ -286,9 +286,7 @@ export const stack: { group: string; items: string[] }[] = [
     items: [
       "E2B / Firecracker Sandboxes",
       "Least-Privilege Tools",
-      "AgentOps (OpenTelemetry)",
-      "LangSmith",
-      "Phoenix / Arize",
+      "Observability & Tracing (OpenTelemetry GenAI)",
       "Eval Pipelines (CI-gated)",
       "LLM-as-Judge Evals",
       "Cost & Latency Budgets",
@@ -301,7 +299,6 @@ export const stack: { group: string; items: string[] }[] = [
       "Eval-Driven Development",
       "Agentic Coding",
       "TDD",
-      "Code Review Discipline",
     ],
   },
 ];
