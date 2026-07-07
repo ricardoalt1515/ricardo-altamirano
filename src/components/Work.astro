@@ -1,5 +1,6 @@
 ---
 import { projects } from "../data/content";
+import FeaturedWork from "./FeaturedWork.astro";
 ---
 
 <section class="section section--light work" id="work">
@@ -8,6 +9,8 @@ import { projects } from "../data/content";
     <p class="lede work__lede" data-reveal>
       Production AI built inside real domain operations, not prototypes.
     </p>
+
+    <FeaturedWork />
 
     <ol class="work__list">
       {projects.map((p, i) => (

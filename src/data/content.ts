@@ -116,15 +116,40 @@ export type Project = {
   status?: string;
 };
 
+/**
+ * Featured case study rendered at the top of the Work section.
+ * Its operating core is public as the SecondStream repo, so the block can
+ * link to real code and show real product screenshots.
+ */
+export const featuredWork = {
+  index: "01",
+  title: "Vertical AI platform for regulated operations",
+  status: "Hydrous Group · In production",
+  blurb:
+    "Field teams ran regulated workflows out of spreadsheets and email threads. I built a production AI platform where agents operate on top of a deterministic vertical core: humans approve canonical truth; agents handle retrieval, tool execution, and structured drafts inside real business processes. Guardrailed with least-privilege tools, sandboxed execution, and evals in the loop.",
+  href: "https://github.com/ricardoalt1515/Second-Stream",
+  linkLabel: "Open-source core on GitHub",
+  diagramCaption: "Agents draft. Humans approve. The database owns workflow state.",
+  screenshots: [
+    {
+      src: "/work/secondstream-discovery.webp",
+      width: 1600,
+      height: 788,
+      alt: "AI discovery results proposing candidate streams extracted from uploaded field documents",
+      caption: "AI discovery: agents extract candidate streams from messy field evidence; every draft goes through human review.",
+    },
+    {
+      src: "/work/secondstream-offers.webp",
+      width: 1600,
+      height: 735,
+      alt: "Offer pipeline board tracking qualified streams by commercial status and owner",
+      caption: "Qualified streams move through a governed offer pipeline with ownership and a full audit trail.",
+    },
+  ],
+  tags: ["Vertical AI", "Production Agents", "Subagent Orchestration", "Guardrails", "Evals", "FastAPI"],
+} as const;
+
 export const projects: Project[] = [
-  {
-    index: "01",
-    title: "Vertical AI platform for regulated operations",
-    blurb:
-      "Field teams ran regulated workflows out of spreadsheets and email threads. I built a production AI platform where agents operate on top of a deterministic vertical core: humans approve canonical truth; agents handle retrieval, tool execution, and structured drafts inside real business processes. Guardrailed with least-privilege tools, sandboxed execution, and evals in the loop.",
-    tags: ["Vertical AI", "Production Agents", "Subagent Orchestration", "Guardrails", "Evals", "FastAPI"],
-    status: "Hydrous Group · In production",
-  },
   {
     index: "02",
     title: "Company-wide knowledge layer with Claude Skills",

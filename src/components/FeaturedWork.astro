@@ -1,0 +1,222 @@
+---
+import { featuredWork as f } from "../data/content";
+---
+
+<article class="feat" data-reveal>
+  <div class="feat__head">
+    <span class="feat__num">{f.index}</span>
+    <div class="feat__headings">
+      <h3 class="feat__name">{f.title}</h3>
+      <p class="feat__status">{f.status}</p>
+    </div>
+  </div>
+
+  <p class="feat__blurb">{f.blurb}</p>
+
+  <div class="feat__diagram-wrap">
+    <svg
+      class="feat__diagram"
+      viewBox="0 0 1120 300"
+      role="img"
+      aria-label="Architecture: messy field inputs flow through AI agents into human review, then into a deterministic core on PostgreSQL, then into the offer pipeline. Outcomes feed back into the agents as a learning loop."
+    >
+      <defs>
+        <marker id="fwa" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L8 4 L0 8 z" class="d-head"></path>
+        </marker>
+      </defs>
+
+      <!-- Inputs -->
+      <rect class="d-box" x="10" y="55" width="170" height="130"></rect>
+      <text class="d-title" x="95" y="88" text-anchor="middle">MESSY INPUTS</text>
+      <text class="d-item" x="95" y="116" text-anchor="middle">PDFs · lab reports</text>
+      <text class="d-item" x="95" y="136" text-anchor="middle">images · audio</text>
+      <text class="d-item" x="95" y="156" text-anchor="middle">email · chat</text>
+
+      <line class="d-arrow" x1="184" y1="120" x2="219" y2="120" marker-end="url(#fwa)"></line>
+
+      <!-- Agents -->
+      <rect class="d-box" x="225" y="55" width="200" height="130"></rect>
+      <text class="d-title" x="325" y="88" text-anchor="middle">AI AGENTS</text>
+      <text class="d-item" x="325" y="116" text-anchor="middle">pydantic-ai agents</text>
+      <text class="d-item" x="325" y="136" text-anchor="middle">structured outputs</text>
+      <text class="d-item" x="325" y="156" text-anchor="middle">extract · draft · assess</text>
+
+      <line class="d-arrow" x1="429" y1="120" x2="464" y2="120" marker-end="url(#fwa)"></line>
+
+      <!-- Human review gate -->
+      <rect class="d-box d-box--accent" x="470" y="55" width="170" height="130"></rect>
+      <text class="d-title d-title--accent" x="555" y="88" text-anchor="middle">HUMAN REVIEW</text>
+      <text class="d-item" x="555" y="116" text-anchor="middle">approves</text>
+      <text class="d-item" x="555" y="136" text-anchor="middle">canonical truth</text>
+
+      <line class="d-arrow" x1="644" y1="120" x2="679" y2="120" marker-end="url(#fwa)"></line>
+
+      <!-- Deterministic core -->
+      <rect class="d-box d-box--core" x="685" y="55" width="230" height="130"></rect>
+      <text class="d-title" x="800" y="88" text-anchor="middle">DETERMINISTIC CORE</text>
+      <text class="d-item d-item--accent" x="800" y="114" text-anchor="middle">PostgreSQL</text>
+      <text class="d-item" x="800" y="136" text-anchor="middle">canonical data · workflow state</text>
+      <text class="d-item" x="800" y="156" text-anchor="middle">evidence · audit trail</text>
+
+      <line class="d-arrow" x1="919" y1="120" x2="954" y2="120" marker-end="url(#fwa)"></line>
+
+      <!-- Offer pipeline -->
+      <rect class="d-box" x="960" y="55" width="150" height="130"></rect>
+      <text class="d-title" x="1035" y="88" text-anchor="middle">OFFER PIPELINE</text>
+      <text class="d-item" x="1035" y="116" text-anchor="middle">assessments</text>
+      <text class="d-item" x="1035" y="136" text-anchor="middle">offers · outcomes</text>
+
+      <!-- Learning loop -->
+      <path class="d-loop" d="M 1035 185 V 245 H 325 V 195" marker-end="url(#fwa)"></path>
+      <text class="d-item d-item--faint" x="680" y="268" text-anchor="middle">OUTCOMES FEED THE LEARNING LOOP</text>
+    </svg>
+  </div>
+  <p class="feat__caption">{f.diagramCaption}</p>
+
+  <div class="feat__shots">
+    {f.screenshots.map((s) => (
+      <figure class="feat__shot">
+        <img src={s.src} alt={s.alt} width={s.width} height={s.height} loading="lazy" decoding="async" />
+        <figcaption>{s.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <div class="feat__foot">
+    <ul class="feat__tags">
+      {f.tags.map((t) => <li class="chip">{t}</li>)}
+    </ul>
+    <a class="arrow-link focus-ring" href={f.href} target="_blank" rel="noopener">
+      {f.linkLabel} <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .feat {
+    border: 1px solid var(--line-strong);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+  }
+
+  .feat__head {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  .feat__num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+  }
+  .feat__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  .feat__status {
+    margin-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .feat__blurb {
+    margin-top: 1.5rem;
+    color: var(--ink-dim);
+    max-width: 68ch;
+  }
+
+  .feat__diagram-wrap {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    border: 1px solid var(--line);
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    overflow-x: auto;
+  }
+  .feat__diagram {
+    display: block;
+    width: 100%;
+    min-width: 880px;
+    height: auto;
+  }
+  .feat__caption {
+    margin-top: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+
+  /* Diagram styles */
+  .d-box { fill: none; stroke: var(--line-strong); stroke-width: 1.2; }
+  .d-box--accent { stroke: var(--accent); }
+  .d-box--core { fill: var(--accent-glow); stroke: var(--ink); stroke-width: 1.4; }
+  .d-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    fill: var(--ink);
+  }
+  .d-title--accent { fill: var(--accent); }
+  .d-item {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    fill: var(--ink-dim);
+  }
+  .d-item--accent { fill: var(--accent); font-weight: 600; }
+  .d-item--faint { fill: var(--ink-faint); letter-spacing: 0.14em; }
+  .d-arrow { stroke: var(--ink-dim); stroke-width: 1.2; }
+  .d-loop { fill: none; stroke: var(--ink-faint); stroke-width: 1.1; stroke-dasharray: 3 6; }
+  .d-head { fill: var(--ink-dim); }
+
+  .feat__shots {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    margin-top: clamp(2rem, 5vw, 3rem);
+  }
+  @media (min-width: 820px) {
+    .feat__shots { grid-template-columns: 1fr 1fr; }
+  }
+  .feat__shot img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line-strong);
+  }
+  .feat__shot figcaption {
+    margin-top: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.55;
+    color: var(--ink-faint);
+    max-width: 52ch;
+  }
+
+  .feat__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-top: clamp(2rem, 5vw, 2.75rem);
+  }
+  .feat__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>
