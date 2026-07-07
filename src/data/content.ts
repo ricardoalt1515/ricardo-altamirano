@@ -12,9 +12,9 @@ export const site = {
   location: "Los Mochis, Sinaloa, Mexico",
   currentCompany: "Hydrous Group",
   // Used for <title>, meta description and Open Graph
-  seoTitle: "Ricardo Altamirano — AI Engineer",
+  seoTitle: "Ricardo Altamirano · AI Engineer",
   seoDescription:
-    "AI Engineer & Forward-Deployed Engineer building production agents and the harnesses they run on — context engineering, evals, guardrails, and vertical AI inside real regulated workflows.",
+    "AI Engineer & Forward-Deployed Engineer building production agents and the harnesses they run on: context engineering, evals, guardrails, and vertical AI inside real regulated workflows.",
   // Set this to your deployed URL when you have a domain (used for OG / canonical)
   url: "https://ricardo-altamirano.vercel.app",
 } as const;
@@ -26,16 +26,14 @@ export const hero = {
   headline: "I build AI systems that ship to production.",
   accent: "AI systems",
   lede:
-    "Production agents and the harnesses they run on — context engineering, evals, guardrails, and the deterministic operating cores agents need. Shipped with Spec-Driven Development discipline.",
+    "Production agents and the harnesses they run on: context engineering, evals, guardrails, and the deterministic operating cores agents need. Shipped with Spec-Driven Development discipline.",
   // Status line — modeled after Julián's "currently working on" pattern + LinkedIn open-to-work.
   status: {
     label: "Open to AI Engineer & Forward-Deployed roles",
     currently: "Building vertical AI at Hydrous Group",
   },
-  tags: ["Harness Engineering", "Context Engineering", "Vertical AI", "Agentic RAG", "Evals", "MCP"],
   ctas: [
     { label: "View Work", href: "#work", primary: true },
-    { label: "Get in Touch", href: "#contact", primary: false },
     // CV lives at public/RICARDO-ALTAMIRANO-2026.pdf (served from site root).
     { label: "Download CV", href: "/RICARDO-ALTAMIRANO-2026.pdf", primary: false, external: true },
   ],
@@ -62,15 +60,15 @@ export const marquee = [
 
 export const about = {
   intro: [
-    "I'm an AI Engineer — and in practice, a forward-deployed one. I embed in a domain and stay until the system actually works in production, not just in a demo. Most of my work lives where being wrong has consequences, so I optimize for systems that fail safely and stay debuggable.",
+    "I'm an AI Engineer, and in practice a forward-deployed one. I embed in a domain and stay until the system actually works in production, not just in a demo. Most of my work lives where being wrong has consequences, so I optimize for systems that fail safely and stay debuggable.",
     "Currently at Hydrous Group, building vertical AI platforms that pair governed agents with deterministic operating cores. I work with Spec-Driven Development and agentic coding discipline.",
   ],
   // Short conviction statements — the "what I believe" block.
   // The first belief is the personal thesis, lifted from my own product writing.
   beliefs: [
     "Don't build the agent. Build the operating system the agent must use.",
-    "An agent is a model plus a harness. The model is the easy part — I build the harness: context, tools, evals, guardrails.",
-    "Agents need guardrails, not vibes — least-privilege tools, governed workflows, and humans who approve canonical truth.",
+    "An agent is a model plus a harness. The model is the easy part. I build the harness: context, tools, evals, guardrails.",
+    "Agents need guardrails, not vibes: least-privilege tools, governed workflows, and humans who approve canonical truth.",
   ],
 } as const;
 
@@ -81,7 +79,7 @@ export const method = {
   principles: [
     {
       title: "Structured outputs over free text",
-      detail: "Models return typed, validated objects — not prose I have to parse and hope about.",
+      detail: "Models return typed, validated objects, not prose I have to parse and hope about.",
     },
     {
       title: "Deterministic logic outside the model",
@@ -89,7 +87,7 @@ export const method = {
     },
     {
       title: "Evals before deploy",
-      detail: "Changes ship behind eval suites in CI — measured, not vibes.",
+      detail: "Changes ship behind eval suites in CI: measured, not vibes.",
     },
     {
       title: "Least-privilege tool execution",
@@ -131,7 +129,7 @@ export const projects: Project[] = [
     index: "02",
     title: "Company-wide knowledge layer with Claude Skills",
     blurb:
-      "Domain expertise was trapped in people's heads, Slack threads, and docs that went stale. I built an internal knowledge layer that packages each team's expertise as model-invoked Claude Skills — Claude applies the right guidance automatically from task context, so engineers don't have to know what exists or go ask. Distributed through an internal marketplace with per-team governance, backed by subagents for review and validation, lifecycle hooks, MCP servers, and OpenTelemetry usage analytics to keep the skills sharp.",
+      "Domain expertise was trapped in people's heads, Slack threads, and docs that went stale. I built an internal knowledge layer that packages each team's expertise as model-invoked Claude Skills. Claude applies the right guidance automatically from task context, so engineers don't have to know what exists or go ask. Distributed through an internal marketplace with per-team governance, backed by subagents for review and validation, lifecycle hooks, MCP servers, and OpenTelemetry usage analytics to keep the skills sharp.",
     tags: ["Claude Skills", "Knowledge Layer", "Subagents", "MCP", "Hooks", "Observability"],
     status: "Hydrous Group · Internal platform",
   },
@@ -139,7 +137,7 @@ export const projects: Project[] = [
     index: "03",
     title: "Multimodal diagnostics & proposal generation",
     blurb:
-      "Field evidence — documents, images, charts, engineering assets — arrived in inconsistent formats. I built multimodal AI that grounds analysis in domain knowledge, then generates client-ready technical proposals with dynamic tables, charts, and process-flow diagrams.",
+      "Field evidence (documents, images, charts, engineering assets) arrived in inconsistent formats. I built multimodal AI that grounds analysis in domain knowledge, then generates client-ready technical proposals with dynamic tables, charts, and process-flow diagrams.",
     tags: ["Multimodal", "Document AI", "RAG", "Structured Outputs"],
     status: "Hydrous Group",
   },
@@ -156,7 +154,7 @@ export const projects: Project[] = [
     index: "05",
     title: "Intelligent parking platform",
     blurb:
-      "End-to-end product build — architecture, backend services, frontend, and production rollout. Plus internal AI tooling for CRM knowledge retrieval across the company.",
+      "End-to-end product build: architecture, backend services, frontend, and production rollout. Plus internal AI tooling for CRM knowledge retrieval across the company.",
     tags: ["Full-Stack", "React", "Python", "Production"],
     status: "DVAWEB",
   },
@@ -190,7 +188,7 @@ export const openSource: OpenSourceItem[] = [
     name: "Chamai",
     href: "https://github.com/ricardoalt1515/chamai",
     blurb:
-      "White-label AI agent workspace for vertical workflows. A reusable product shell — auth, threads, attachments, streaming, artifact generation — where each vertical owns its prompt, skills, tools, and artifact schemas, resolved at request time by a per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock. Ships with a vitest-native eval layer: a recorded-replay deterministic gate on every PR (schema validity, tool sequence, step and cost budgets) plus LLM-as-judge scoring with a human-calibration loop.",
+      "White-label AI agent workspace for vertical workflows. A reusable product shell (auth, threads, attachments, streaming, artifact generation) where each vertical owns its prompt, skills, tools, and artifact schemas, resolved at request time by a per-tenant agent router on an AI SDK ToolLoopAgent runtime over Amazon Bedrock. Ships with a vitest-native eval layer: a recorded-replay deterministic gate on every PR (schema validity, tool sequence, step and cost budgets) plus LLM-as-judge scoring with a human-calibration loop.",
     status: "In development",
     tags: ["Next.js", "AI SDK", "Amazon Bedrock", "CI-Gated Evals", "LLM-as-Judge"],
   },
@@ -200,7 +198,7 @@ export const experience = [
   {
     company: "Hydrous Group",
     role: "AI Engineer",
-    period: "Jan 2025 — Present",
+    period: "Jan 2025 - Present",
     site: "hydrousmgmt.com",
     summary:
       "Building vertical AI platforms and governed agent workflows for regulated industrial operations: RAG, multimodal diagnostics, and production-grade proposal generation. Built a company-wide knowledge layer with model-invoked Claude Skills, plus subagents, hooks, MCP, and usage analytics.",
@@ -208,10 +206,10 @@ export const experience = [
   {
     company: "DVAWEB",
     role: "Software Engineer",
-    period: "Nov 2023 — Jan 2025",
+    period: "Nov 2023 - Jan 2025",
     site: "",
     summary:
-      "Shipped an intelligent parking platform end-to-end and built AI internal tools — CRM retrieval, NL-to-SQL, and an enterprise knowledge platform that cut proposal turnaround by 78%.",
+      "Shipped an intelligent parking platform end-to-end and built AI internal tools: CRM retrieval, NL-to-SQL, and an enterprise knowledge platform that cut proposal turnaround by 78%.",
   },
 ] as const;
 
@@ -255,11 +253,12 @@ export const stack: { group: string; items: string[] }[] = [
       "Prompt Caching & Cost Optimization",
       "LangChain",
       "LangGraph",
-      "AI SDK ToolLoopAgent",
+      "Vercel AI SDK",
       "Amazon Bedrock",
       "Vertex AI",
       "Microsoft Copilot Studio",
       "Gemini Enterprise",
+      "Snowflake Cortex Agents (CoWork)",
       "MCP",
       "A2A Protocol",
       "Vector DBs",
@@ -309,7 +308,7 @@ export const stack: { group: string; items: string[] }[] = [
 export const contact = {
   headline: "Let's build something.",
   lede:
-    "I'm interested in AI Engineer and Forward-Deployed roles — production agents, harnesses, evals, and vertical AI inside real regulated domains. If that's your problem, I'd like to hear about it.",
+    "I'm interested in AI Engineer and Forward-Deployed roles: production agents, harnesses, evals, and vertical AI inside real regulated domains. If that's your problem, I'd like to hear about it.",
   email: "ricardoaltamirano1515@gmail.com",
   links: [
     { label: "Email", href: "mailto:ricardoaltamirano1515@gmail.com" },

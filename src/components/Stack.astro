@@ -12,9 +12,6 @@ const manifestJson = JSON.stringify(manifest, null, 2);
 
 <section class="section stack" id="stack">
   <div class="container">
-    <p class="marker" data-reveal>
-      <span class="marker__num">05</span><span>Stack</span>
-    </p>
     <h2 class="section-title stack__title" data-reveal>The<br />manifest</h2>
 
     <div class="strengths" data-reveal>
@@ -29,9 +26,6 @@ const manifestJson = JSON.stringify(manifest, null, 2);
 
     <div class="manifest" data-reveal>
       <div class="manifest__bar">
-        <span class="manifest__dots" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
         <span class="manifest__file">stack.json</span>
         <button class="manifest__copy focus-ring" type="button" data-copy={manifestJson}>
           <span class="manifest__copy-label">copy</span>
@@ -115,17 +109,6 @@ const manifestJson = JSON.stringify(manifest, null, 2);
     border-bottom: 1px solid var(--line);
     background: var(--surface-2);
   }
-  .manifest__dots { display: inline-flex; gap: 0.4rem; }
-  .manifest__dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--line-strong);
-  }
-  .manifest__dots span:first-child { background: #ff5f57; opacity: 0.5; }
-  .manifest__dots span:nth-child(2) { background: #febc2e; opacity: 0.5; }
-  .manifest__dots span:nth-child(3) { background: #28c840; opacity: 0.5; }
-
   .manifest__file {
     font-family: var(--font-mono);
     font-size: 0.74rem;

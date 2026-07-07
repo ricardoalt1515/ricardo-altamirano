@@ -5,16 +5,13 @@ import { experience, education } from "../data/content";
 <section class="section experience" id="experience">
   <div class="container">
     <p class="marker" data-reveal>
-      <span class="marker__num">04</span><span>Experience</span>
+      <span>Experience</span>
     </p>
 
     <ol class="exp__list">
       {experience.map((job, i) => (
         <li class="exp__item" data-reveal style={`--reveal-delay:${i * 90}ms`}>
-          <div class="exp__period">
-            <span class="exp__dot" aria-hidden="true"></span>
-            {job.period}
-          </div>
+          <div class="exp__period">{job.period}</div>
           <div class="exp__body">
             <h3 class="exp__role">
               {job.role} <span class="exp__at">/</span> <span class="exp__company">{job.company}</span>
@@ -29,7 +26,7 @@ import { experience, education } from "../data/content";
     <div class="exp__edu" data-reveal>
       <span class="eyebrow">Education</span>
       <p class="exp__edu-text">
-        <strong>{education.school}</strong> — {education.degree}
+        <strong>{education.school}</strong>, {education.degree}
       </p>
     </div>
   </div>
@@ -66,15 +63,6 @@ import { experience, education } from "../data/content";
     color: var(--ink-dim);
     padding-top: 0.4rem;
   }
-  .exp__dot {
-    width: 7px;
-    height: 7px;
-    background: var(--accent);
-    flex: none;
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px var(--accent-glow);
-  }
-
   .exp__role {
     font-family: var(--font-display);
     font-weight: 700;

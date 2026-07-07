@@ -151,7 +151,6 @@ body::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); }
   background: var(--accent);
   flex: none;
 }
-.marker .marker__num { color: var(--accent); }
 
 /* --------------------------------------------------------- display headings */
 .display {
